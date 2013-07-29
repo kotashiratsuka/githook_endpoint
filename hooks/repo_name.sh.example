@@ -1,21 +1,21 @@
 #!/bin/bash
 
-REMOTE_HOST=''
-REMOTE_USER=''
-SSH_OPTIONS=''
+REMOTE_HOST='addr or hostname or null'
+REMOTE_USER='git'
+SSH_OPTIONS='-i /where/id_rsa'
 REMOTE_REPO_LOCATION='/srv/repofolder/'
-DEPLOY_BRANCH=stable
+DEPLOY_BRANCH="stable"
 
 RUN_COMMANDS="cd $REMOTE_REPO_LOCATION ; git reset --hard ; git checkout $DEPLOY_BRANCH ; git pull origin $DEPLOY_BRANCH"
 
-if [ $REMOTE_HOST == '' ]; then
-	RESULT=`$RUN_COMMANDS`
+if [ "$REMOTE_HOST" == '' ]; then
+	$RUN_COMMANDS
 else
 	ssh $SSH_OPTIONS $REMOTE_USER@$REMOTE_HOST "$RUN_COMMANDS"
 fi
 
-if [ $RETVAL -ne 0 ]; then 
+if [ $? -ne 0 ]; then 
 	echo "failed to deploy"; 
 else 
-	echo " stable was deployed if changes exist";
+	echo "$DEPLOY_BRANCH was deployed if changes exist";
 fi

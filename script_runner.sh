@@ -4,14 +4,14 @@ LOG_FILE=log/script_runner.log
 
 while getopts r:b:u:m:c: option
 do
-        case "${option}"
-        in
-                r) REPOSITORY=${OPTARG};;
-                b) BRANCH=${OPTARG};;
-                u) USER=${OPTARG};;
-                m) MESSAGE=${OPTARG};;
-				c) COMMITID=${OPTARG};;
-        esac
+	case "${option}"
+	in
+		r) REPOSITORY=${OPTARG};;
+		b) BRANCH=${OPTARG};;
+		u) USER=${OPTARG};;
+		m) MESSAGE=${OPTARG};;
+		c) COMMITID=${OPTARG};;
+	esac
 done
 
 
