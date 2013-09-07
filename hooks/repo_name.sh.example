@@ -6,7 +6,7 @@ SSH_OPTIONS='-i /where/id_rsa'
 REMOTE_REPO_LOCATION='/srv/repofolder/'
 DEPLOY_BRANCH="stable"
 
-RUN_COMMANDS="cd $REMOTE_REPO_LOCATION ; git reset --hard ; git checkout $DEPLOY_BRANCH ; git pull origin $DEPLOY_BRANCH"
+RUN_COMMANDS="cd $REMOTE_REPO_LOCATION ; git fetch ; git reset --hard origin/$DEPLOY_BRANCH; git clean -d -f ; git checkout $DEPLOY_BRANCH ; git pull origin $DEPLOY_BRANCH"
 
 if [ "$REMOTE_HOST" == '' ]; then
 	$RUN_COMMANDS
